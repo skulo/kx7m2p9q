@@ -59,13 +59,20 @@ The project includes automated integration tests using `pytest`.
 
 ## Running the Project
 
+**Prerequisite:** Ensure Docker (e.g., Docker Desktop) is installed and running on your machine before executing these commands.
+
 ### First time setup:
 
 1. `git clone https://github.com/skulo/kx7m2p9q`
 2. `cd kx7m2p9q`
-3. `docker compose up --build`
-4. The API will be available at: `http://localhost:8000/docs`
+3. `docker compose up --build -d`
+4. `docker compose exec app uv run alembic upgrade head`
+5. The API will be available at: `http://localhost:8000/docs`
 
 ### Subsequent starts:
 
 `docker compose up`
+
+### Stopping the application:
+
+`docker compose down`
