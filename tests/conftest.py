@@ -6,8 +6,8 @@ from app.main import app
 from app.db.base import Base
 from app.db.session import get_db
 
-# Teszt adatbázis (lehet ugyanaz a Postgres, de érdemes külön sémát vagy db-t használni)
-# Most az egyszerűség kedvéért a meglévőn belül hozunk létre ideiglenes táblákat
+# Test database 
+
 SQLALCHEMY_DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/weather"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
@@ -15,7 +15,7 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 
 @pytest.fixture(scope="function")
 def db():
-    # Minden teszt előtt letakarítjuk és újraépítjük a táblákat
+    # Before every test, reset the database
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     connection = engine.connect()

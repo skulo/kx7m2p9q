@@ -19,7 +19,6 @@ def query_measurements(
     date_to: str | None = Query(None, description="ISO format date"),
     db: Session = Depends(get_db)
 ):
-    # Itt a QueryParams-t manuálisan rakjuk össze a query paraméterekből
     params = QueryParams(
         sensor_ids=sensor_ids,
         metrics=metrics,
